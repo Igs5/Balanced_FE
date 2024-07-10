@@ -100,7 +100,7 @@ const PersonalBalance = ({
   const updateDebts = async (token, user, newDebts, debt) => {
     try {
       const response = await fetch(
-        '${BASE_URL}/api/auth/household/${user.household_id._id}/one-debt',
+        `${BASE_URL}/api/auth/household/${user.household_id._id}/one-debt`,
         {
           method: 'PUT',
           headers: {

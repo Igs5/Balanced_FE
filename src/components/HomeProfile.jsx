@@ -12,7 +12,7 @@ const HomeProfile = ({ user, token, household, setHousehold }) => {
       try {
         // Fetch household information
         const householdResponse = await axios.get(
-          '${BASE_URL}/api/auth/profile',
+          `${BASE_URL}/api/auth/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

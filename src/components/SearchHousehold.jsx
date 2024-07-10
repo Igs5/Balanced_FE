@@ -18,7 +18,7 @@ const SearchHousehold = ({ token, setHousehold }) => {
   const handleSearch = async (token) => {
     try {
       const response = await fetch(
-        '${BASE_URL}/api/auth/households?search=${searchTerm}',
+        `${BASE_URL}/api/auth/households?search=${searchTerm}`,
         {
           method: 'GET',
           headers: {
@@ -42,7 +42,7 @@ const SearchHousehold = ({ token, setHousehold }) => {
   const handleJoinHousehold = async (householdId, token) => {
     try {
       const response = await fetch(
-        '${BASE_URL}/api/auth/households/join',
+        `${BASE_URL}/api/auth/households/join`,
         {
           method: 'POST',
           headers: {

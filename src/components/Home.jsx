@@ -13,7 +13,7 @@ const Home = ({ user, setUser, token, household, setHousehold }) => {
   useEffect(() => {
     const fetchProfile = async (token) => {
       try {
-        const response = await fetch('${BASE_URL}/api/auth/profile', {
+        const response = await fetch(`${BASE_URL}/api/auth/profile`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const Home = ({ user, setUser, token, household, setHousehold }) => {
     const fetchBalances = async (token) => {
       try {
         const response = await fetch(
-          '${BASE_URL}/api/auth/balances',
+          `${BASE_URL}/api/auth/balances`,
           {
             method: 'GET',
             headers: {

@@ -24,7 +24,7 @@ const BalancePage = ({
     const fetchBalances = async (token) => {
       try {
         const response = await fetch(
-          '${BASE_URL}/api/auth/balances',
+          `${BASE_URL}/api/auth/balances`,
           {
             method: 'GET',
             headers: {

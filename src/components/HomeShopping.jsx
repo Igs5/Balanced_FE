@@ -10,7 +10,7 @@ const HomeShopping = ({ user, token }) => {
     const fetchItems = async (token) => {
       try {
         const response = await fetch(
-          '${BASE_URL}/api/auth/shopping/items',
+          `${BASE_URL}/api/auth/shopping/items`,
           {
             method: 'GET',
             headers: {

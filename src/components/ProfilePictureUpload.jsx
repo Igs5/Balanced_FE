@@ -15,7 +15,7 @@ const ProfilePictureUpload = ({ setProfilePicture }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('${BASE_URL}/api/auth/profile-picture/upload', formData, {
+      const response = await axios.post(`${BASE_URL}/api/auth/profile-picture/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,

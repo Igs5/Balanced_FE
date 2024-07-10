@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     const checkValidToken = async (token) => {
       try {
-        const response = await fetch('${BASE_URL}/api/auth/me', {
+        const response = await fetch(`${BASE_URL}/api/auth/me`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

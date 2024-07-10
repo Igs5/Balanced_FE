@@ -10,7 +10,7 @@ const AddHousehold = ({ token, setHousehold }) => {
   const handleCreateHousehold = async (token) => {
     try {
       const response = await fetch(
-        '${BASE_URL}/api/auth/households/create',
+        `${BASE_URL}/api/auth/households/create`,
         {
           method: 'POST',
           headers: {
