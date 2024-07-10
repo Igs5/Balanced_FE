@@ -2,6 +2,9 @@ import PersonalBalance from './PersonalBalance';
 import { useState, useEffect } from 'react';
 import Chart from './Chart';
 
+const BASE_URL = 'https://balanced-be-1.onrender.com';
+
+
 const BalancePage = ({
   user,
   setUser,
@@ -21,7 +24,7 @@ const BalancePage = ({
     const fetchBalances = async (token) => {
       try {
         const response = await fetch(
-          'http://localhost:5000/api/auth/balances',
+          '${BASE_URL}/api/auth/balances',
           {
             method: 'GET',
             headers: {

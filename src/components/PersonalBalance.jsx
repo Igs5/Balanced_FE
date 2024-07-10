@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const BASE_URL = 'https://balanced-be-1.onrender.com';
+
 const PersonalBalance = ({
   token,
   user,
@@ -98,7 +100,7 @@ const PersonalBalance = ({
   const updateDebts = async (token, user, newDebts, debt) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/household/${user.household_id._id}/one-debt`,
+        '${BASE_URL}/api/auth/household/${user.household_id._id}/one-debt',
         {
           method: 'PUT',
           headers: {

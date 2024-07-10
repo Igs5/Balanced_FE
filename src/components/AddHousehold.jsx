@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const BASE_URL = 'https://balanced-be-1.onrender.com';
+
 const AddHousehold = ({ token, setHousehold }) => {
   const [householdName, setHouseholdName] = useState('');
   const navigate = useNavigate();
@@ -8,7 +10,7 @@ const AddHousehold = ({ token, setHousehold }) => {
   const handleCreateHousehold = async (token) => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/auth/households/create',
+        '${BASE_URL}/api/auth/households/create',
         {
           method: 'POST',
           headers: {

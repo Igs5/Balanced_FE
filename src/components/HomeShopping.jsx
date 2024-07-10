@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import emptyListImage from '../assets/empty-list.png';
 
+const BASE_URL = 'https://balanced-be-1.onrender.com';
+
 const HomeShopping = ({ user, token }) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const fetchItems = async (token) => {
       try {
         const response = await fetch(
-          'http://localhost:5000/api/auth/shopping/items',
+          '${BASE_URL}/api/auth/shopping/items',
           {
             method: 'GET',
             headers: {
