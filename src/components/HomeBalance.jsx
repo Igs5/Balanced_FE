@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import PositiveBalance from '../assets/PositiveBalance';
-import NegativeBalance from '../assets/NegativeBalance';
+import PositiveBalance from '../assets/PositiveBalance.svg';
+import NegativeBalance from '../assets/NegativeBalance.svg';
 
 const HomeBalance = ({ user }) => {
   // Determine the color based on the balance
