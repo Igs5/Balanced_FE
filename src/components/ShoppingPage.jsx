@@ -160,7 +160,7 @@ const ShoppingPage = ({
   const handleDeleteBoughtItem = async (itemId, token) => {
     try {
       const deleteResponse = await fetch(
-        '${BASE_URL}/api/auth/shopping/bought/${itemId}`,
+        '${BASE_URL}/api/auth/shopping/bought/${itemId}',
         {
           method: 'DELETE',
           headers: {
