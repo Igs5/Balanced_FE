@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import emptyListImage from '../assets/empty-list.png';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
-const HomeShopping = ({ user, token }) => {
+const HomeShopping = ({ user, token}) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const fetchItems = async (token) => {
       try {
         const response = await fetch(
-          `${BASE_URL}/api/auth/shopping/items`,
+          `${url}/api/auth/shopping/items`,
           {
             method: 'GET',
             headers: {

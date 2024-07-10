@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-
-const BASE_URL = 'https://balanced-be-1.onrender.com';
-
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 const PersonalBalance = ({
   token,
   user,
@@ -11,7 +9,7 @@ const PersonalBalance = ({
   debts,
   setDebts,
   notifications,
-  setNotifications,
+  setNotifications
 }) => {
   const [personalStatus, setPersonalStatus] = useState([]);
   const [debtsToPay, setDebtsToPay] = useState([]);
@@ -100,7 +98,7 @@ const PersonalBalance = ({
   const updateDebts = async (token, user, newDebts, debt) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/api/auth/household/${user.household_id._id}/one-debt`,
+        `${url}/api/auth/household/${user.household_id._id}/one-debt`,
         {
           method: 'PUT',
           headers: {

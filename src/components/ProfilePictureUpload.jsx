@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
 const ProfilePictureUpload = ({ setProfilePicture }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
@@ -15,13 +14,16 @@ const ProfilePictureUpload = ({ setProfilePicture }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${BASE_URL}/api/auth/profile-picture/upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      const response = await axios.post(
+        `${url}/api/auth/profile-picture/upload`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setProfilePicture(response.data.profilePicture);
     } catch (error) {
       console.error('Error uploading profile picture:', error);
@@ -31,11 +33,11 @@ const ProfilePictureUpload = ({ setProfilePicture }) => {
   return (
     <div>
       <input
-        id="profile-picture-upload"
-        type="file"
+        id='profile-picture-upload'
+        type='file'
         name='profilePicture'
         onChange={handleFileChange}
-        style={{ display: 'none' }} 
+        style={{ display: 'none' }}
       />
     </div>
   );

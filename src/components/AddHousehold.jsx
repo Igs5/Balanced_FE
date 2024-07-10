@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
 const AddHousehold = ({ token, setHousehold }) => {
   const [householdName, setHouseholdName] = useState('');
@@ -10,7 +10,7 @@ const AddHousehold = ({ token, setHousehold }) => {
   const handleCreateHousehold = async (token) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/api/auth/households/create`,
+        `${url}/api/auth/households/create`,
         {
           method: 'POST',
           headers: {

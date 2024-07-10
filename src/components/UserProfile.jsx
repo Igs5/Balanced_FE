@@ -1,8 +1,14 @@
 import ProfilePictureUpload from './ProfilePictureUpload';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-function UserProfile() {
-  const [profilePicture, setProfilePicture] = useState("");
+function UserProfile({ user, profilePicture, setProfilePicture }) {
+  console.log(profilePicture);
+
+  useEffect(() => {
+    setProfilePicture(user?.profilePicture);
+  }, [user]);
+
   return (
     <>
       <img
@@ -14,7 +20,9 @@ function UserProfile() {
         style={{ cursor: 'pointer' }}
         className='profile-image'
       />
-
+      <Link to='/auth/updateProfile'>
+        <button className='btn-see mb-6 mt-8'>My Profile</button>
+      </Link>
       <ProfilePictureUpload setProfilePicture={setProfilePicture} />
     </>
   );

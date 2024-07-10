@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const BASE_URL = "https://balanced-be-1.onrender.com";
-
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 const ShoppingPage = ({
   user,
   household,
@@ -9,7 +8,7 @@ const ShoppingPage = ({
   items,
   setItems,
   boughtItems,
-  setBoughtItems,
+  setBoughtItems
 }) => {
   const [itemName, setItemName] = useState('');
   const [cost, setCost] = useState('');
@@ -24,7 +23,7 @@ const ShoppingPage = ({
   const fetchItems = async (token) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/api/auth/shopping/items`,
+        `${url}/api/auth/shopping/items`,
         {
           method: 'GET',
           headers: {
@@ -47,7 +46,7 @@ const ShoppingPage = ({
   const fetchBoughtItems = async (token) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/api/auth/shopping/bought-items`,
+        `${url}/api/auth/shopping/bought-items`,
         {
           method: 'GET',
           headers: {
@@ -78,7 +77,7 @@ const ShoppingPage = ({
         return;
       }
       const response = await fetch(
-        `${BASE_URL}/api/auth/shopping/add`,
+        `${url}/api/auth/shopping/add`,
         {
           method: 'POST',
           headers: {
@@ -104,7 +103,7 @@ const ShoppingPage = ({
   const handleBuyItem = async (token) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/api/auth/shopping/buy`,
+        `${urlL}/api/auth/shopping/buy`,
         {
           method: 'POST',
           headers: {
@@ -138,7 +137,7 @@ const ShoppingPage = ({
   const handleDeleteItem = async (itemId, token) => {
     try {
       const deleteResponse = await fetch(
-        `${BASE_URL}/api/auth/shopping/${itemId}`,
+        `${url}/api/auth/shopping/${itemId}`,
         {
           method: 'DELETE',
           headers: {
@@ -160,7 +159,7 @@ const ShoppingPage = ({
   const handleDeleteBoughtItem = async (itemId, token) => {
     try {
       const deleteResponse = await fetch(
-        `${BASE_URL}/api/auth/shopping/bought/${itemId}`,
+        `${url}/api/auth/shopping/bought/${itemId}`,
         {
           method: 'DELETE',
           headers: {

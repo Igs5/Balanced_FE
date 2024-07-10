@@ -9,9 +9,9 @@ import SearchHousehold from './components/SearchHousehold';
 import ShoppingPage from './components/ShoppingPage';
 import BalancePage from './components/BalancePage';
 import RequireLogin from './components/RequireLogin';
+import ProfilePictureUpload from './components/ProfilePictureUpload';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
-
+const url = import.meta.env.VITE_BASE_URL;
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -23,8 +23,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [boughtItems, setBoughtItems] = useState([]);
   const [notifications, setNotifications] = useState([]);
-
-  
+  const [profilePicture, setProfilePicture] = useState('');
   const location = useLocation();
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -40,14 +39,16 @@ function App() {
   //checking user token
   useEffect(() => {
     const checkValidToken = async (token) => {
+      console.log(url);
       try {
-        const response = await fetch(`${BASE_URL}/api/auth/me`, {
+        const response = await fetch(`${url}/api/auth/me`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         });
+
         const data = await response.json();
         if (response.ok) {
           setUser(data);
@@ -64,14 +65,12 @@ function App() {
     setHousehold(user?.household_id);
   }, [auth]);
 
-  // console.log('user', user);
-  // console.log('household', household);
   useEffect(() => {
     const updateDebts = async (token, household) => {
       try {
         console.log(household._id);
         const response = await fetch(
-          `${BASE_URL}/api/auth/household/${household._id}/debts`,
+          `${url}/api/auth/household/${household._id}/debts`,
           {
             method: 'PUT',
             headers: {
@@ -94,7 +93,7 @@ function App() {
   if (!user && !['/', '/signup'].includes(location.pathname)) {
     return <Navigate to='/' />;
   }
-
+  console.log(user);
   return (
     <>
       <nav className='flex justify-end p-4'>
@@ -167,6 +166,8 @@ function App() {
                   setUser={setUser}
                   balances={balances}
                   setBalances={setBalances}
+                  profilePicture={profilePicture}
+                  setProfilePicture={setProfilePicture}
                 />
               ) : (
                 <Navigate to='/' />

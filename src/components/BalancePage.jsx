@@ -2,8 +2,8 @@ import PersonalBalance from './PersonalBalance';
 import { useState, useEffect } from 'react';
 import Chart from './Chart';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
 
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
 const BalancePage = ({
   user,
@@ -18,13 +18,13 @@ const BalancePage = ({
   items,
   boughtItems,
   notifications,
-  setNotifications,
+  setNotifications
 }) => {
   useEffect(() => {
     const fetchBalances = async (token) => {
       try {
         const response = await fetch(
-          `${BASE_URL}/api/auth/balances`,
+          `${url}/api/auth/balances`,
           {
             method: 'GET',
             headers: {
@@ -92,6 +92,7 @@ const BalancePage = ({
           setDebts={setDebts}
           notifications={notifications}
           setNotifications={setNotifications}
+          url={url}
         />
       </div>
     </div>

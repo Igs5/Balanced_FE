@@ -5,15 +5,23 @@ import HomeBalance from './HomeBalance';
 import HomeProfile from './HomeProfile';
 import HomeShopping from './HomeShopping';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
-const Home = ({ user, setUser, token, household, setHousehold }) => {
+const Home = ({
+  user,
+  setUser,
+  token,
+  household,
+  setHousehold,
+  profilePicture,
+  setProfilePicture,
+}) => {
   const [profile, setProfile] = useState(null);
   const [message, setMessage] = useState('');
   useEffect(() => {
     const fetchProfile = async (token) => {
       try {
-        const response = await fetch(`${BASE_URL}/api/auth/profile`, {
+        const response = await fetch(`${url}/api/auth/profile`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -31,16 +39,13 @@ const Home = ({ user, setUser, token, household, setHousehold }) => {
 
     const fetchBalances = async (token) => {
       try {
-        const response = await fetch(
-          `${BASE_URL}/api/auth/balances`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`${url}/api/auth/balances`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
@@ -61,7 +66,12 @@ const Home = ({ user, setUser, token, household, setHousehold }) => {
       <div className='firstCol row-span-3 md:row-span-3 h-full'>
         <div className='container purple-box mb-5 rounded-xl overflow-hidden shadow-lg row-span-1 flex-grow grid grid-cols-1 md:grid-cols-2'>
           <div className='imgPlaceholder imgml-10 col-span-1 size-40'>
-            <UserProfile />
+            <UserProfile
+              url={url}
+              user={user}
+              profilePicture={profilePicture}
+              setProfilePicture={setProfilePicture}
+            />
           </div>
           <div className='col-span-1'>
             <h1 className='text-xl'>Welcome back</h1>
@@ -79,6 +89,7 @@ const Home = ({ user, setUser, token, household, setHousehold }) => {
                 setHousehold={setHousehold}
                 household={household}
                 setUser={setUser}
+                url={url}
               />
             )}
           </div>
@@ -94,7 +105,7 @@ const Home = ({ user, setUser, token, household, setHousehold }) => {
       </div>
 
       <div className='container purple-box rounded-xl overflow-hidden shadow-lg row-span-3 md:row-span-3'>
-        <HomeShopping user={user} token={token} />
+        <HomeShopping user={user} token={token} url={url} />
       </div>
     </div>
   );

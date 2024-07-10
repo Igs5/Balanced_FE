@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ProfilePictureUpload from '../components/ProfilePictureUpload';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
 const HomeProfile = ({ user, token, household, setHousehold }) => {
   const [message, setMessage] = useState('');
@@ -12,7 +12,7 @@ const HomeProfile = ({ user, token, household, setHousehold }) => {
       try {
         // Fetch household information
         const householdResponse = await axios.get(
-          `${BASE_URL}/api/auth/profile`,
+          `${url}/api/auth/profile`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL = 'https://balanced-be-1.onrender.com';
+const url = import.meta.env.VITE_BASE_URL || 'http://localhost:5000';
 
 const SearchHousehold = ({ token, setHousehold }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,7 +18,7 @@ const SearchHousehold = ({ token, setHousehold }) => {
   const handleSearch = async (token) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/api/auth/households?search=${searchTerm}`,
+        `${url}/api/auth/households?search=${searchTerm}`,
         {
           method: 'GET',
           headers: {
@@ -42,7 +42,7 @@ const SearchHousehold = ({ token, setHousehold }) => {
   const handleJoinHousehold = async (householdId, token) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/api/auth/households/join`,
+        `${url}/api/auth/households/join`,
         {
           method: 'POST',
           headers: {
