@@ -10,6 +10,9 @@ import ShoppingPage from './components/ShoppingPage';
 import BalancePage from './components/BalancePage';
 import RequireLogin from './components/RequireLogin';
 
+const BASE_URL = 'https://balanced-be-1.onrender.com';
+
+
 function App() {
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token')) || null;
@@ -21,6 +24,7 @@ function App() {
   const [boughtItems, setBoughtItems] = useState([]);
   const [notifications, setNotifications] = useState([]);
 
+  
   const location = useLocation();
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -37,7 +41,7 @@ function App() {
   useEffect(() => {
     const checkValidToken = async (token) => {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/me', {
+        const response = await fetch('${BASE_URL}/api/auth/me', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -67,7 +71,7 @@ function App() {
       try {
         console.log(household._id);
         const response = await fetch(
-          `http://localhost:5000/api/auth/household/${household._id}/debts`,
+          `${BASE_URL}/api/auth/household/${household._id}/debts`,
           {
             method: 'PUT',
             headers: {

@@ -4,6 +4,8 @@ import SignupImage from '../assets/Signin_background.svg';
 import { Navigate, Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the eye icons
 
+const BASE_URL = "https://balanced-be-1.onrender.com";
+
 const RegisterForm = ({ auth, setAuth, user, setUser, setToken }) => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -19,7 +21,7 @@ const RegisterForm = ({ auth, setAuth, user, setUser, setToken }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/auth/register',
+        '${BASE_URL}/api/auth/register',
         {
           username,
           email,

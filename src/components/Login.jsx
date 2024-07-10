@@ -3,6 +3,8 @@ import { Navigate, Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import LoginImage from '../assets/login_background.svg';
 
+const Base_URL = "https://balanced-be-1.onrender.com"
+
 const Login = ({ auth, setAuth, user, setUser, setToken }) => {
   const [formValues, setFormValues] = useState({
     email: '',
@@ -27,11 +29,12 @@ const Login = ({ auth, setAuth, user, setUser, setToken }) => {
     setError(null);
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('${BASE_URL}/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formValues),
       });
+
 
       const data = await response.json();
       localStorage.setItem('token', data.token);

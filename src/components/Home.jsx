@@ -5,13 +5,15 @@ import HomeBalance from './HomeBalance';
 import HomeProfile from './HomeProfile';
 import HomeShopping from './HomeShopping';
 
+const BASE_URL = 'https://balanced-be-1.onrender.com';
+
 const Home = ({ user, setUser, token, household, setHousehold }) => {
   const [profile, setProfile] = useState(null);
   const [message, setMessage] = useState('');
   useEffect(() => {
     const fetchProfile = async (token) => {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/profile', {
+        const response = await fetch('${BASE_URL}/api/auth/profile', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -30,7 +32,7 @@ const Home = ({ user, setUser, token, household, setHousehold }) => {
     const fetchBalances = async (token) => {
       try {
         const response = await fetch(
-          'http://localhost:5000/api/auth/balances',
+          '${BASE_URL}/api/auth/balances',
           {
             method: 'GET',
             headers: {

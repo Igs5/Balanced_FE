@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+const BASE_URL = "https://balanced-be-1.onrender.com";
+
 const ShoppingPage = ({
   user,
   household,
@@ -22,7 +24,7 @@ const ShoppingPage = ({
   const fetchItems = async (token) => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/auth/shopping/items',
+        '${BASE_URL}/api/auth/shopping/items',
         {
           method: 'GET',
           headers: {
@@ -45,7 +47,7 @@ const ShoppingPage = ({
   const fetchBoughtItems = async (token) => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/auth/shopping/bought-items',
+        '${BASE_URL}/api/auth/shopping/bought-items',
         {
           method: 'GET',
           headers: {
@@ -76,7 +78,7 @@ const ShoppingPage = ({
         return;
       }
       const response = await fetch(
-        'http://localhost:5000/api/auth/shopping/add',
+        '${BASE_URL}/api/auth/shopping/add',
         {
           method: 'POST',
           headers: {
@@ -102,7 +104,7 @@ const ShoppingPage = ({
   const handleBuyItem = async (token) => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/auth/shopping/buy',
+        '${BASE_URL}/api/auth/shopping/buy',
         {
           method: 'POST',
           headers: {
@@ -136,7 +138,7 @@ const ShoppingPage = ({
   const handleDeleteItem = async (itemId, token) => {
     try {
       const deleteResponse = await fetch(
-        `http://localhost:5000/api/auth/shopping/${itemId}`,
+        '${BASE_URL}/api/auth/shopping/${itemId}',
         {
           method: 'DELETE',
           headers: {
@@ -158,7 +160,7 @@ const ShoppingPage = ({
   const handleDeleteBoughtItem = async (itemId, token) => {
     try {
       const deleteResponse = await fetch(
-        `http://localhost:5000/api/auth/shopping/bought/${itemId}`,
+        '${BASE_URL}/api/auth/shopping/bought/${itemId}`,
         {
           method: 'DELETE',
           headers: {
