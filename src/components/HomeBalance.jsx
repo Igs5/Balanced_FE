@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import PositiveBalance from '../assets/PositiveBalance.svg';
+import NegativeBalance from '../assets/NegativeBalance.svg';
 
 const HomeBalance = ({ user }) => {
   // Determine the color based on the balance
@@ -8,8 +10,10 @@ const HomeBalance = ({ user }) => {
   // Determine the image based on the balance
   const balanceImage =
     user.balance >= 0
-      ? '../src/assets/PositiveBalance.svg'
-      : '../src/assets/NegativeBalance.svg';
+      // ? '../src/assets/PositiveBalance.svg'
+      // : '../src/assets/NegativeBalance.svg';
+      ? PositiveBalance
+      : NegativeBalance;
   return (
     <>
       <div className='container balance-container'>
