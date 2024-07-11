@@ -152,7 +152,7 @@ const PersonalBalance = ({
                   </button>
                 )}
                 {debt.payed && debt.confirmPayed && (
-                  <button onClick={() => deleteDebt()}>Mark as Paid</button>
+                  <button onClick={() => deleteDebt()} className='btn-see p-3'>Mark as Paid</button>
                 )}
               </li>
             ))
@@ -175,7 +175,7 @@ const PersonalBalance = ({
                     }`
                   : `This debt has been settled!`}
                 {debt.payed && !debt.payedConfirmation && (
-                  <button onClick={() => markAsPaid(debt, false, true, user)}>
+                  <button onClick={() => markAsPaid(debt, false, true, user)} className='btn-see p-3'>
                     Settle Debt
                   </button>
                 )}
