@@ -103,7 +103,7 @@ const ShoppingPage = ({
   const handleBuyItem = async (token) => {
     try {
       const response = await fetch(
-        `${urlL}/api/auth/shopping/buy`,
+        `${url}/api/auth/shopping/buy`,
         {
           method: 'POST',
           headers: {
